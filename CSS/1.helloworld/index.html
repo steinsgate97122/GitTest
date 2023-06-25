@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+
+    <!--
+    可以在style标签内直接写css代码，不推荐
+    推荐独立于html写css文件
+    -->
+
+    <style>
+        h1 {
+            color: blanchedalmond;
+        }
+    </style>
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!--
+    html中加入css有三种方式：
+    1、外部样式，link标签，href中指定css路径
+    2、内部样式，style标签，标签内写选择器和声明，不推荐
+    3、行内样式，直接在h1标签内写style属性，不推荐
+    同时存在时，优先级按照就近原则
+    -->
+
+</head>
+<body>
+
+<!--外部样式更近-->
+<h1>Hello World</h1>
+<!--行内样式更近-->
+<h1 style="color: aqua">你好</h1>
+
+</body>
+</html>
