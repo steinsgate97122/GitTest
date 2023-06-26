@@ -1,0 +1,28 @@
+/*
+font-family：文本字体，可以指定多个字体名称，以便在第一个不可用时使用备用字体
+*/
+body {
+    font-family: 楷体, Arial;
+    color: #19c37d;
+}
+
+/*
+font-size：文本字体大小
+*/
+h1 {
+    font-size: 40px;
+}
+
+/*
+font-weight：文本字体粗细
+*/
+#p1 {
+    font-weight: bolder;
+}
+
+/*
+font-style：斜体
+*/
+#p2 {
+    font-style: italic;
+}
