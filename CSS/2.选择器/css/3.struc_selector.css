@@ -18,3 +18,8 @@ p:nth-child(2) {
 p:nth-child(4) {
     color: yellow;
 }
+
+/*a:hover 鼠标悬浮状态*/
+a:hover {
+    color: magenta;
+}
