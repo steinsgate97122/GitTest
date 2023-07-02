@@ -1,0 +1,42 @@
+#navi {
+    background: #F1F2F3;
+    width: 300px;
+}
+
+/*background与font类似，可以写在一行里，分别是颜色、图像链接、位置、重复方式*/
+.title {
+    text-indent: 2em;
+    font-size: 20px;
+    font-weight: bolder;
+    background: #4c84ff url(../image/down.png) 20px 20px no-repeat;
+    line-height: 50px;
+}
+
+ul {
+    background: #F1F2F3;
+}
+
+/*
+list-style: cycle;  空心圆
+list-style: none;   去掉圆点
+*/
+ul li {
+    list-style: none;
+    text-indent: 1em;
+    height: 30px;
+    background: url(../image/right.png) 20px 20px no-repeat;
+}
+
+/*
+a标签样式一般都会配置两个状态（hover和非hover）
+*/
+a {
+    text-decoration: none;
+    color: #000;
+    font-size: 15px;
+}
+
+a:hover {
+    color: #FF6699;
+    text-decoration: underline;
+}

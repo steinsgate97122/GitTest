@@ -1,0 +1,39 @@
+/*body标签默认填充一个非0的margin，可手动置为0*/
+body {
+    margin: 0px;
+}
+
+/*
+border:粗细 样式 颜色
+solid 实线    dashed 虚线
+*/
+#app {
+    width: 300px;
+    border: 1px solid red;
+}
+
+h2 {
+    font-size: 20px;
+    line-height: 40px;
+    text-indent: 1em;
+}
+
+form {
+    text-indent: 1em;
+}
+
+#app form div input {
+    border: 1px dashed black;
+}
+
+#input1 input {
+    margin-left: 10px;
+}
+
+#input2 input {
+    margin-left: 26px;
+}
+
+#input3 input {
+    margin-left: 220px;
+}
