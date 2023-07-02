@@ -18,7 +18,10 @@ a[href^="http"] {
     background: #a29bd4;
 }
 
-/*placeholder属性以name结尾*/
-input[placeholder$="name"] {
+/*
+placeholder属性以name结尾
+可以指定多个属性
+*/
+input[placeholder$="name"][type="text"] {
     background: #acacbe;
 }

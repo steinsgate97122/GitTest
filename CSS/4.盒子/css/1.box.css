@@ -1,15 +1,21 @@
 /*body标签默认填充一个非0的margin，可手动置为0*/
-body {
-    margin: 0px;
-}
+/*body {*/
+    /*margin: 0;*/
+/*}*/
+
+/* 盒子模型的尺寸： border + margin + padding + 内容元素  */
 
 /*
 border:粗细 样式 颜色
 solid 实线    dashed 虚线
+margin  第一个参数表示上边距100px；第二个auto表示右边距为auto，自动居中
+        margin后面也可以跟4个参数，分别代表 上 右 下 左（顺时针）
+除了外边距margin，还可以设置内边距padding，用法一样
 */
 #app {
     width: 300px;
     border: 1px solid red;
+    margin: 100px auto;
 }
 
 h2 {
@@ -22,10 +28,11 @@ form {
     text-indent: 1em;
 }
 
-#app form div input {
+input {
     border: 1px dashed black;
 }
 
+/*除了left，还有top、bottom、right三个方向*/
 #input1 input {
     margin-left: 10px;
 }
@@ -36,4 +43,6 @@ form {
 
 #input3 input {
     margin-left: 220px;
+    margin-top: 15px;
+    margin-bottom: 5px;
 }
