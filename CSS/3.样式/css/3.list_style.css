@@ -17,7 +17,7 @@ ul {
 }
 
 /*
-list-style: cycle;  空心圆
+list-style: circle;  空心圆
 list-style: none;   去掉圆点
 */
 ul li {

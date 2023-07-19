@@ -19,7 +19,7 @@ let startFunction = function() {
 
 let stopFunction = function() {
     clearInterval(intervalId);
-}
+};
 
 startButton.addEventListener("click", startFunction);
 stopButton.addEventListener("click", stopFunction);
