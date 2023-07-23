@@ -1,0 +1,14 @@
+#formContainer {
+      margin-bottom: 20px;
+}
+#studentList {
+  list-style: none;
+  padding: 0;
+}
+.student {
+  margin-bottom: 5px;
+}
+.delete-button {
+  cursor: pointer;
+  color: red;
+}
