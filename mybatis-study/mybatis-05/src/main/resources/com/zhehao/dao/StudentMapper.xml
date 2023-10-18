@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhehao.dao.StudentMapper">
+
+    <!--
+    方式一，两次查询
+    select * from student
+    select * from teacher where id = (select tid from student)
+    -->
+    <!--执行getAllStudents时，resultMap中的association标签触发关联查询，根据tid调用getTeacher，形成嵌套结构-->
+    <select id="getAllStudents" resultMap="studentTeacher">
+        select * from student
+    </select>
+
+    <resultMap id="studentTeacher" type="student">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <association property="teacher" column="tid" javaType="teacher" select="getTeacher"/>
+    </resultMap>
+
+    <select id="getTeacher" resultType="teacher">
+        select * from teacher where id = #{tid}
+    </select>
+
+    <!--
+    方式二，直接联表查询，在resultMap中解析结果
+    -->
+    <select id="getAllStudentsV2" resultMap="studentTeacherV2">
+        select s.id sid, s.`name` sname, t.id tid, t.`name` tname from student s
+        left join teacher t
+        on s.tid = t.id
+    </select>
+
+    <resultMap id="studentTeacherV2" type="student">
+        <result property="id" column="sid"/>
+        <result property="name" column="sname"/>
+        <!--teacher属性是一个类，需要用association标签，javaType记录对应类-->
+        <association property="teacher" javaType="teacher">
+            <result property="id" column="tid"/>
+            <result property="name" column="tname"/>
+        </association>
+    </resultMap>
+
+</mapper>

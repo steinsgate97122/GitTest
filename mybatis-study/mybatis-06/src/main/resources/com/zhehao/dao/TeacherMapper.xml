@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhehao.dao.TeacherMapper">
+
+    <!--联表-->
+    <select id="getTeacher" resultMap="teacherStudent">
+        select s.id sid, s.`name` sname, t.id tid, t.`name` tname from student s
+        left join teacher t
+        on s.tid = t.id
+    </select>
+
+    <resultMap id="teacherStudent" type="teacher">
+        <result property="id" column="tid"/>
+        <result property="name" column="tname"/>
+        <!--students属性是一个集合，需要用collection标签，ofType记录对应泛型-->
+        <collection property="students" ofType="student">
+            <result property="id" column="sid"/>
+            <result property="name" column="sname"/>
+            <result property="tid" column="tid"/>
+        </collection>
+    </resultMap>
+
+    <!--下面这种方式结构混乱，不太建议-->
+    <select id="getTeacherV2" resultMap="teacherStudentV2">
+        select * from teacher
+    </select>
+
+    <resultMap id="teacherStudentV2" type="teacher">
+        <result property="id" column="id"/>
+        <collection property="students" ofType="student" column="id" javaType="ArrayList" select="selectStudentByTeacherId"/>
+    </resultMap>
+
+    <select id="selectStudentByTeacherId" resultType="student">
+        select * from student where tid = #{id}
+    </select>
+
+</mapper>

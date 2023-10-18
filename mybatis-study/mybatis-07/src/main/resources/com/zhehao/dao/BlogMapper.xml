@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhehao.dao.BlogMapper">
+
+    <!--动态sql就是用一些标签来拼sql-->
+    <insert id="insertBlog" parameterType="blog">
+        insert into blog(`id`, `title`, `author`, `create_time`, `views`)
+        values(#{id}, #{title}, #{author}, #{createTime}, #{views})
+    </insert>
+
+    <!--map中不包含title或views时，直接查询全量数据；包含时加上对应条件-->
+    <!--where标签：当至少一个子元素返回SQL时，会往SQL插入where语句；并且会自动去除多余的and和or-->
+    <select id="getBlogListIf" parameterType="map" resultType="blog">
+        select * from blog
+        <where>
+            <if test="title != null">
+                title = #{title}
+            </if>
+            <if test="views != null">
+                <!--只满足该条件的情况下，where标签会自动去掉and-->
+                and views >= #{views}
+            </if>
+        </where>
+    </select>
+
+    <select id="getBlogListChoose" parameterType="map" resultType="blog">
+        select * from blog
+        <where>
+            <!--choose when otherwise标签：（类似java中switch语句）
+                choose标签内只会返回一个SQL，下面例子中当title != null，不再进行后续的判断
+                当所有条件都不满足，则返回otherwise标签的内容
+            -->
+            <choose>
+                <when test="title != null">
+                    title = #{title}
+                </when>
+                <when test="views != null">
+                    views >= #{views}
+                </when>
+                <otherwise>
+                    author = "zhehao"
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <update id="updateBlogByTitle" parameterType="map">
+        update blog
+        <!--set标签会将返回sql的最后一个逗号自动去掉，只满足第一个if条件时，不会加上逗号-->
+        <set>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="views != null">views = #{views}</if>
+        </set>
+        where title = #{title}
+    </update>
+
+    <select id="getBlogListForEach" parameterType="map" resultType="blog">
+        select * from blog
+        <where>
+            <!--foreach标签可以遍历集合，item为本次迭代获取的元素，可指定开头结尾的字符串，并指定分隔符-->
+            <foreach collection="titleList" item="title" open="title in (" close=")" separator=",">
+                #{title}
+            </foreach>
+        </where>
+    </select>
+
+</mapper>

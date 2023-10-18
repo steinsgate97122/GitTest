@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhehao.dao.UserMapper">
+    <!--resultType设置为JavaBean，实际上是创建了一个ResultMap，再根据属性名来映射列到 JavaBean 的属性上
+    当数据库中的列名与JavaBean的属性名不能匹配上时，可以用resultMap标签完成映射-->
+<!--    <select id="getUserListById" parameterType="int" resultType="user">-->
+<!--        select * from mybatis.`user` where `id` = #{id}-->
+<!--    </select>-->
+    <resultMap id="userResultMap" type="user">
+        <!--数据库字段只有pwd不同，所以只需要配置这一个映射就行-->
+        <result property="password" column="pwd"/>
+    </resultMap>
+
+    <select id="getUserListById" parameterType="int" resultMap="userResultMap">
+        select * from mybatis.`user` where `id` = #{id}
+    </select>
+
+    <select id="getUserListByPage" parameterType="map" resultMap="userResultMap">
+        select * from mybatis.`user` limit #{offset}, #{pageSize}
+    </select>
+
+</mapper>

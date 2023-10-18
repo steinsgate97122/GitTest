@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--properties引入外部属性文件，dataSource中可以使用文件中的属性值-->
+    <properties resource="db.properties"/>
+
+    <!--使用别名Alias可以提高代码可读性，不需要每次输入完整类名-->
+    <typeAliases>
+        <!--小型项目建议用typeAlias直接给某个类定义别名-->
+<!--        <typeAlias alias="User" type="com.pojo.com.zhehao.User"/>-->
+        <!--大型项目建议用package指定包名，在这个包下的Java Bean，会使用Bean的首字母小写作为别名-->
+        <package name="com.zhehao.pojo"/>
+    </typeAliases>
+
+    <environments default="development">
+        <!--可以配置多套环境，但每个SqlSessionFactory实例只能选择一种环境，用id选择环境-->
+        <environment id="development">
+            <!--事务管理器默认使用JDBC，直接使用了 JDBC 的提交和回滚功能-->
+            <transactionManager type="JDBC"/>
+            <!--数据源默认使用POOLED，能使并发 Web 应用快速响应请求-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url1}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="jdbc">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url2}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--指定映射器的xml路径，推荐使用-->
+        <mapper resource="com/zhehao/dao/UserMapper.xml"/>
+        <!--下面这两种映射方式需要保证类名与xml文件名一致，且在相同路径下，不推荐-->
+<!--        <mapper class="com.dao.com.zhehao.UserMapper"/>-->
+<!--        <package name="com.zhehao.dao"/>-->
+    </mappers>
+
+</configuration>
