@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--
+    mybatis中不再配置environments，变为spring-dao.xml中的dataSource
+    mappers也可以配置在spring-dao.xml，SqlSessionFactoryBean中注入mapperLocations即可
+    这样的好处是将所有的MyBatis配置集中维护在Spring的配置文件中，便于维护
+    -->
+
+<!--    <settings>-->
+<!--        <setting name="logImpl" value="LOG4J"/>-->
+<!--        <setting name="mapUnderscoreToCamelCase" value="true"/>-->
+<!--    </settings>-->
+
+    <typeAliases>
+        <package name="com.zhehao.pojo"/>
+    </typeAliases>
+
+</configuration>

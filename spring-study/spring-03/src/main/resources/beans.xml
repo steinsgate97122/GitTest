@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="cat" class="com.zhehao.pojo.Cat"/>
+    <bean id="dog" class="com.zhehao.pojo.Dog"/>
+    <!--    <bean id="dog1" class="com.zhehao.pojo.Dog"/>-->
+
+    <!--手动装配-->
+    <!--    <bean id="people" class="com.zhehao.pojo.People">-->
+    <!--        <property name="name" value="haohao"/>-->
+    <!--        <property name="cat" ref="cat"/>-->
+    <!--        <property name="dog" ref="dog"/>-->
+    <!--    </bean>-->
+
+    <!--People类中有方法setDog，通过byName自动装配时，会自动寻找id为dog的bean注入-->
+    <!--People类中有方法setDog(Dog dog)，通过byType自动装配时，会自动寻找类型为Dog的bean注入-->
+    <bean id="people" class="com.zhehao.pojo.People" autowire="byType">
+        <property name="name" value="haohao"/>
+    </bean>
+
+
+</beans>

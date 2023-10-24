@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--bean标签用于定义一个Bean，id为唯一标识符，class为Java类的全限定名-->
+    <!--property标签给Bean的属性赋值，对应无参构造，一般嵌套在bean标签内，name为属性名，value给属性直接赋值，ref引用另一个Bean-->
+    <!--constructor-arg标签给Bean的属性赋值，对应有参构造，嵌套在bean标签内，name为属性名，value给属性直接赋值，ref引用另一个Bean-->
+
+    <bean id="hello" class="com.zhehao.pojo.Hello">
+        <property name="str" value="hello, world."/>
+    </bean>
+
+    <bean id="userDaoMysql" class="com.zhehao.dao.UserDaoMysqlImpl"/>
+    <bean id="userDaoOracle" class="com.zhehao.dao.UserDaoOracleImpl"/>
+
+    <bean id="userService" class="com.zhehao.service.UserServiceImpl">
+        <property name="userDao" ref="userDaoMysql"/>
+    </bean>
+
+    <!--如果存在多个有参构造，可使用index属性指定参数位置，可使用type属性指定参数类型-->
+    <bean id="myClass" class="com.zhehao.pojo.MyClass">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="hello" ref="hello"/>
+    </bean>
+
+</beans>

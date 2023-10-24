@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="userService" class="com.zhehao.service.UserServiceImpl"/>
+    <bean id="customizedPointcut" class="com.zhehao.customized.CustomizedPointcut"/>
+
+    <aop:config>
+        <!--
+        切面customizedPointcut是一个普通的Bean定义，通过<aop:aspect>标记为一个Aspect
+        相比<aop:advisor>，将切面和切点通过<aop:aspect>关联更加直接
+        -->
+        <aop:aspect ref="customizedPointcut">
+            <aop:pointcut id="pointcut" expression="execution(* com.zhehao.service.UserServiceImpl.*(..))"/>
+            <aop:before method="before" pointcut-ref="pointcut"/>
+            <aop:after method="after" pointcut-ref="pointcut"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="userService" class="com.zhehao.service.UserServiceImpl"/>
+    <bean id="log" class="com.zhehao.log.Log"/>
+    <bean id="afterLog" class="com.zhehao.log.AfterLog"/>
+
+    <aop:config>
+        <!--
+        <aop:pointcut>指定切点，
+        execution(* com.zhehao.service.UserServiceImpl.*(..))是一个切点表达式
+        表示com.zhehao.service.UserServiceImpl类的所有方法
+        -->
+        <aop:pointcut id="pointcut" expression="execution(* com.zhehao.service.UserServiceImpl.*(..))"/>
+
+        <!--
+        <aop:advisor>标签直接绑定切面，两个切面log和afterLog通过Bean定义
+        这两个类是MethodBeforeAdvice和AfterReturningAdvice接口的实现类
+        -->
+        <aop:advisor advice-ref="log" pointcut-ref="pointcut"/>
+        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>
+    </aop:config>
+
+</beans>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="userService" class="com.zhehao.service.UserServiceImpl"/>
+
+    <!--使用<aop:aspectj-autoproxy/>，启用 AspectJ 自动代理，可以使用注解的方式定义切面，可读性更强-->
+    <aop:aspectj-autoproxy/>
+    <bean id="annotationPointcut" class="com.zhehao.anno.AnnotationPointcut"/>
+
+
+</beans>

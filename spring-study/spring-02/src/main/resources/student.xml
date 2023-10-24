@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="address" class="com.zhehao.pojo.Address">
+        <property name="address" value="baidu"/>
+    </bean>
+
+    <bean id="stu" class="com.zhehao.pojo.Student">
+        <!--用value/ref直接注入值-->
+        <property name="name" value="zhehao"/>
+        <property name="address" ref="address"/>
+        <property name="books">
+            <!--Array类型-->
+            <array>
+                <value>东方快车</value>
+                <value>尼罗河</value>
+            </array>
+        </property>
+        <property name="hobbies">
+            <!--List类型-->
+            <list>
+                <value>钓鱼</value>
+                <value>躺平</value>
+            </list>
+        </property>
+        <property name="card">
+            <!--Map类型-->
+            <map>
+                <entry key="id" value="zhehao"/>
+                <entry key="no" value="150920126"/>
+            </map>
+        </property>
+        <property name="games">
+            <!--Set类型-->
+            <set>
+                <value>WOW</value>
+                <value>LOL</value>
+            </set>
+        </property>
+        <property name="wife">
+            <!--注入null-->
+            <null/>
+        </property>
+        <property name="info">
+            <props>
+                <prop key="gender">male</prop>
+                <prop key="age">26</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>
