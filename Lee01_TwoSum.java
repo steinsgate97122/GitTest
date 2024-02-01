@@ -50,8 +50,8 @@ public class Lee01_TwoSum {
                         .map(entry -> entry.getKey())
                         .findFirst()
                         .orElse(null);
-                if (j != null) {
-                    return new int[]{i, j};
+                if ((j != null) && (j != i)) {
+                    return new int[]{j, i};
                 }
             }
         }
