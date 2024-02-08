@@ -78,6 +78,22 @@ public class Lee01_TwoSum {
         return null;
     }
 
+    public static int[] twoSum5(int[] nums, int target) {
+        // 建立{索引-值}哈希表，哈希表检索key的效率比检索value更高
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (!hashMap.isEmpty()) {
+                int addend = target - nums[i];
+                if (hashMap.containsKey(addend)) {
+                    Integer j = hashMap.get(addend);
+                    return new int[]{j, i};
+                }
+            }
+            hashMap.put(nums[i], i);
+        }
+        return null;
+    }
+
     static class IndexedNums {
         int index;
         int value;
