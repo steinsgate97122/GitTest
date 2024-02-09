@@ -33,6 +33,7 @@ public class Lee20_VaildBracket {
         System.out.println(isValid(""));
         System.out.println(isValid("()[]{}"));
         System.out.println(isValid("([)]"));
+        System.out.println(isValid("()[]{"));
         System.out.println(isValid(")](["));
     }
 }
